@@ -21,7 +21,7 @@ const Manager = () => {
 
     }
     const getPasswords= async () => {
-         let req= await fetch("http://localhost:3000")
+         let req= await fetch("http://localhost:3000/")
          let password = await req.json()
          console.log(password)
          setPasswordArray(password)
@@ -42,22 +42,21 @@ const Manager = () => {
 
 
     const Savepass = async () => {
-
-        setPasswordArray([...PasswordArray, {...form,id:uuidv4()}])
-          await fetch("http://localhost:3000",{
+      if(form.id){
+       console.log("form", form.id)
+          await fetch("http://localhost:3000/",{
             method:"DELETE",
             headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify({id:form._id})
+            body:JSON.stringify({id: form.id})
         })
+    }
+    
+         setPasswordArray([...PasswordArray, {...form,id:uuidv4()}])
         
-
-
-
-        
-        await fetch("http://localhost:3000",{
+        await fetch("http://localhost:3000/",{
             method:"POST",
             headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify({...form,id:uuidv4()})
+            body:JSON.stringify({...form,id: uuidv4()})
         })
         
         // localStorage.setItem("passwords", JSON.stringify([...PasswordArray, {...form,id:uuidv4()}]))
@@ -87,7 +86,7 @@ const Manager = () => {
            if(c){
             console.log("id", id)
             setPasswordArray(PasswordArray.filter(item=>item.id!==id))
-             let res=fetch("http://localhost:3000",{
+             let res=fetch("http://localhost:3000/",{
             method:"DELETE",
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify({id})
@@ -115,8 +114,13 @@ const Manager = () => {
     }
     const editPassword = async (id) => {
         console.log("edit id", id)
+        await fetch("http://localhost:3000/",{
+            method:"PUT",
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify({...form,id:id})
+        })
 
-        setform({...PasswordArray.filter(i=>i.id===id)[0],id:id})
+        setform({...PasswordArray.filter(i=>i.id===id)[0], id:id})
         setPasswordArray(PasswordArray.filter(item=>item.id!==id))
     
     }
