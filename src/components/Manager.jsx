@@ -44,11 +44,11 @@ const Manager = () => {
     const Savepass = async () => {
 
         setPasswordArray([...PasswordArray, {...form,id:uuidv4()}])
-        //   await fetch("http://localhost:3000",{
-        //     method:"DELETE",
-        //     headers:{'Content-Type': 'application/json'},
-        //     body:JSON.stringify({id:form.id})
-        // })
+          await fetch("http://localhost:3000",{
+            method:"DELETE",
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify({id:form._id})
+        })
         
 
 
@@ -114,28 +114,11 @@ const Manager = () => {
 
     }
     const editPassword = async (id) => {
+        console.log("edit id", id)
 
-       console.log("id", id)
-           if(form.id){
-        // 👉 EDIT
-        await fetch("http://localhost:3000",{
-            method:"PUT",
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(form)
-        })
-
-        setPasswordArray(PasswordArray.map(item =>
-            item.id === form.id ? form : item
-        ))
-
-    } 
         setform({...PasswordArray.filter(i=>i.id===id)[0],id:id})
         setPasswordArray(PasswordArray.filter(item=>item.id!==id))
-       
-
-       
-
-
+    
     }
     const handlechange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
