@@ -43,7 +43,7 @@ const Manager = () => {
 
     const Savepass = async () => {
       if(form.id){
-       console.log("form", form.id)
+       console.log("form", form.id)  
           await fetch("http://localhost:3000/",{
             method:"DELETE",
             headers:{'Content-Type': 'application/json'},
@@ -153,7 +153,7 @@ const Manager = () => {
         <>
 
 
-
+        
 
             <ToastContainer
                 position="top-right"
@@ -169,7 +169,7 @@ const Manager = () => {
                 transition={Bounce}
             />
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"><div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-green-400 opacity-20 blur-[100px]"></div></div>
-            <div className="  mycontainer ">
+            <div className="  p-2 md:p-0 md:mycontainer ">
 
                 <h1 className='text-4xl  font-bold text-center'>
                     <span className='text-green-500'>&lt;</span>
@@ -179,10 +179,11 @@ const Manager = () => {
 
 
                 </h1>
+               
 
                 <p className='text-green-900 text-lg text-center'>Your own Password Manager</p>
 
-                <div className="text-black flex flex-col items-center  p-4 gap-8">
+                <div className="text-black flex flex-col items-center  p-4 gap-8 ">
                     <input value={form.site} onChange={handlechange} className='rounded-2xl border border-green-500 w-full text-black px-4 py-1 ' type="text" name="site" id=" " placeholder='Enter Website URL' />
                     <div className="flex flex-col md:flex-row w-full justify-between gap-8">
                         <input value={form.username} onChange={handlechange} className='rounded-2xl border border-green-500 w-full text-black px-4 py-1 ' type="text" name="username" id=" " placeholder='Enter Username' />
