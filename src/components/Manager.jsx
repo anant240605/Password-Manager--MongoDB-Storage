@@ -184,7 +184,7 @@ const Manager = () => {
 
                 <div className="text-black flex flex-col items-center  p-4 gap-8">
                     <input value={form.site} onChange={handlechange} className='rounded-2xl border border-green-500 w-full text-black px-4 py-1 ' type="text" name="site" id=" " placeholder='Enter Website URL' />
-                    <div className="flex  w-full justify-between gap-8">
+                    <div className="flex flex-col md:flex-row w-full justify-between gap-8">
                         <input value={form.username} onChange={handlechange} className='rounded-2xl border border-green-500 w-full text-black px-4 py-1 ' type="text" name="username" id=" " placeholder='Enter Username' />
                         <div className="relative">
 
